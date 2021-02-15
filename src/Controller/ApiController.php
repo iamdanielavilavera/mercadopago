@@ -87,6 +87,12 @@ class ApiController
 
         $resp = Util::obj();
         $resp->init_point = $preference->init_point;
+        $resp->id = $preference->id;
+
+
+        $file = fopen("preference.txt","w");
+        fwrite($file, json_encode($resp, JSON_UNESCAPED_UNICODE));
+        fclose($file);
 
         return Util::success($response, 'ok', $resp);
     }
