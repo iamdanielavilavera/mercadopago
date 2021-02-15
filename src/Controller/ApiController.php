@@ -98,21 +98,27 @@ class ApiController
     }
 
     public function webhook($request, $response, $args){
-      //  $body = json_decode($request->getBody());
+        $body = json_decode($request->getBody());
+        
+        $fbody = fopen("body.txt","w");
+        fwrite($fbody, json_encode($fbody, JSON_UNESCAPED_UNICODE));
+        fclose($fbody);
 
-        $json_event = file_get_contents('php://input', true);
-        $event = json_decode($json_event);
+        $merchant_order = null;
 
-
-        $resp = Util::obj();
-        $resp->desc = 'egaaaaaaaaa';
-
-        $filea = fopen("demo.txt","w");
-        fwrite($filea, json_encode($resp, JSON_UNESCAPED_UNICODE));
-        fclose($filea);
+        switch($body->topic){
+            case 'payment':
+                $payment = MercadoPago\Payment::find_by_id($body->id);
+                // Get the payment and the corresponding merchant_order reported by the IPN.
+                $merchant_order = MercadoPago\MerchantOrder::find_by_id($payment->order->id);
+            break;
+            case 'merchant_order':
+                $merchant_order = MercadoPago\MerchantOrder::find_by_id($body->id);
+            break;
+        }
 
         $file = fopen("webhook.txt","w");
-        fwrite($file, json_encode($event, JSON_UNESCAPED_UNICODE));
+        fwrite($file, json_encode($merchant_order, JSON_UNESCAPED_UNICODE));
         fclose($file);
 
         return Util::success($response, 'webhook ok!');
