@@ -237,6 +237,10 @@ angular.element(document).ready(function () {
 			    checkout : function(){
 			    	http.post(w.configuration.url + 'api/preferences', {order : 'iamdanielavilavera@gmail.com', items: ng.cart}).then(function(response){
 			    		console.log(response);
+			    		if(response.status === 200 && response.data.status === 'SUCCESS'){
+			    			var url = response.data.data.init_point;
+			    			w.location.href = url;
+			    		}
 			    	}, function(error){
 
 			    	});

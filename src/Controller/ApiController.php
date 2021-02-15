@@ -83,7 +83,12 @@ class ApiController
 
         $preference->save();
 
-        return Util::success($response, 'ok', $preference);
+        //print_r($preference);
+
+        $resp = Util::obj();
+        $resp->init_point = $preference->init_point;
+
+        return Util::success($response, 'ok', $resp);
     }
 
     public function webhook($request, $response, $args){
