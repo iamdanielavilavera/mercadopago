@@ -98,10 +98,13 @@ class ApiController
     }
 
     public function webhook($request, $response, $args){
-        $body = json_decode($request->getBody());
+      //  $body = json_decode($request->getBody());
+
+        $json_event = file_get_contents('php://input', true);
+        $event = json_decode($json_event);
 
         $file = fopen("webhook.txt","w");
-        fwrite($file, json_encode($body, JSON_UNESCAPED_UNICODE));
+        fwrite($file, json_encode($event, JSON_UNESCAPED_UNICODE));
         fclose($file);
 
         return Util::success($response, 'webhook ok!');
