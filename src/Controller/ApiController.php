@@ -105,12 +105,11 @@ class ApiController
         fclose($fbody);
 
 
-        $resp = Util::obj();
-        $resp->csm = 'csm';
-        $resp->id = $body->id;
-        $fbodya = fopen("obj.txt","w");
-        fwrite($fbodya, json_encode($resp, JSON_UNESCAPED_UNICODE));
-        fclose($fbodya);
+        $params = $request->getQueryParams();
+
+        $fp = fopen('params.txt', 'w');
+        fwrite($fp, print_r($params, true));
+        fclose($fp);
 
         $merchant_order = null;
 
