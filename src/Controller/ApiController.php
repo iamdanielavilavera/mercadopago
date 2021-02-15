@@ -103,6 +103,14 @@ class ApiController
         $json_event = file_get_contents('php://input', true);
         $event = json_decode($json_event);
 
+
+        $resp = Util::obj();
+        $resp->desc = 'egaaaaaaaaa';
+
+        $filea = fopen("demo.txt","w");
+        fwrite($filea, json_encode($resp, JSON_UNESCAPED_UNICODE));
+        fclose($filea);
+
         $file = fopen("webhook.txt","w");
         fwrite($file, json_encode($event, JSON_UNESCAPED_UNICODE));
         fclose($file);
