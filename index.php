@@ -13,9 +13,8 @@ MercadoPago\SDK::setIntegratorId('dev_2e4ad5dd362f11eb809d0242ac130004');
 
 $container = new Container();
 
-print_r($_SERVER);
-
-/*$container->set('url', $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/');
+//REQUEST_SCHEME
+$container->set('url', $_SERVER['HTTP_X_FORWARDED_PROTO'] . '://' . $_SERVER['HTTP_HOST'] . '/');
 
 $container->set('view', function(){
     $view = new App\Util\Twig(APP_ROOT. DIRECTORY_SEPARATOR . 'templates', [
@@ -42,4 +41,4 @@ $app->get('/failure', App\Controller\AppController::class . ':failure');
 $app->post('/api/preferences', App\Controller\ApiController::class . ':preferences');
 $app->post('/api/webhook', App\Controller\ApiController::class . ':webhook');
 
-$app->run();*/
+$app->run();
