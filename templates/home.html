@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <title>Tienda e-commerce</title>
+
+    <script src="https://www.mercadopago.com/v2/security.js" view="home"></script>
+    
+  </head>
+  <body data-ng-controller="appController">
+
+  	[% include 'menu.html' %]
+
+  	<div style="background: url([[url]]statics/img/banner.jpg) center center no-repeat;height: 470px;margin-top: 73.5px!important;"></div>
+    
+    <div class="album py-5 bg-light">
+	    <div class="container">
+	    	<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+	    		<div class="col" data-ng-repeat="row in products">
+		          <div class="card shadow-sm">
+		            <img src="{{row.image}}">
+
+		            <div class="card-body">
+		              <p class="card-text">{{row.name}}</p>
+		              <div class="d-flex justify-content-between align-items-center">
+		                <div class="btn-group">
+		                  <button type="button" class="btn btn-sm btn-outline-primary" data-ng-click="onClick.addCart(row)">+ Agregar</button>
+		                </div>
+		                <h3 class="text-muted">{{row.price | decimal}}</h3>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+
+	    	</div>
+	    </div>
+	</div>
+
+	[% include 'footer.html' %]
+
+	<script type="text/javascript" src="[[url]]statics/js/currency.min.js"></script>
+    <script type="text/javascript" src="[[url]]statics/js/app.js"></script>
+  </body>
+</html>

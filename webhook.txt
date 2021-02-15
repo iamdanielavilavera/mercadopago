@@ -1,0 +1,17 @@
+{
+    "order": "iamdanielavilavera@gmail.com",
+    "items": [
+        {
+            "id": 2,
+            "code": "1234",
+            "name": "Smartphone Huawei P40 Lite Verde + Speaker Gold",
+            "description": "Dispositivo m\u00f3vil de Tienda e-commerce",
+            "price": 1199.5,
+            "image": "http:\/\/certificacion.mercadopago\/statics\/img\/two.jpg",
+            "currency": "PEN",
+            "quantity": 1,
+            "sale_price": 1199.5,
+            "importe": 1199.5
+        }
+    ]
+}

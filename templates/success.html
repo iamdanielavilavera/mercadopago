@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <title>Tienda e-commerce - Success</title>
+
+    <script src="https://www.mercadopago.com/v2/security.js" view="success"></script>
+
+  </head>
+  <body data-ng-controller="appController">
+
+  	[% include 'menu.html' %]
+
+  	<div style="margin-top: 100px!important;"></div>
+
+
+    <div class="container">
+      <div class="row">
+          <div class="col">
+              <h1 class="text-center">success!!!</h1>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col">
+              <h6>payment_id : [[params['payment_id']]]</h6>
+              <h6>external_reference : [[params['external_reference']]]</h6>
+              <h6>payment_method_id : [[params['payment_method_id']]]</h6>
+          </div>
+        </div>
+    </div>
+
+	[% include 'footer.html' %]
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="[[url]]statics/js/currency.min.js"></script>
+    <script type="text/javascript" src="[[url]]statics/js/app.js"></script>
+  </body>
+</html>

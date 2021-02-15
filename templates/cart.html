@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <title>Tienda e-commerce - Mi carrito</title>
+    <style type="text/css">
+    	.box {
+		    background: #fff;
+		    margin: 0 auto;
+		    margin-top: 50px;
+		    border-radius: 10px;
+		    padding: 30px;
+		    box-shadow: 0 0.75rem 1.5rem rgb(18 38 63 / 3%);
+		    border: 1px solid #edf2f9;
+		}
+		.box .title {
+		    font-size: 2.5rem;
+		    font-weight: 400;
+		    margin-bottom: 20px;
+		}
+    </style>
+
+    <script src="https://www.mercadopago.com/v2/security.js" view="cart"></script>
+
+  </head>
+  <body data-ng-controller="appController">
+
+  	[% include 'menu.html' %]
+
+  	<div style="margin-top: 100px!important;"></div>
+
+  <div class="container section-container" data-ng-hide="cart.length > 0">
+  <div class="box">
+    <p class="text-center">
+      <img src="[[url]]statics/img/empty-cart.svg" alt="Su carrito está vacío" style="width:300px;">
+    </p>
+    <h1 class=" title text-center mt-50">Su carrito está vacío</h1>
+    <p class="subtitle text-center mt-50">
+      Antes de proceder al pago, debe agregar algunos productos a su carrito de compras. Encontrará muchos productos interesantes en nuestra tienda.
+    </p>
+    <div class="text-center mt-50">
+      <a href="[[url]]" class="btn btn-primary btn-lg"> Empieza a comprar</a>
+    </div>
+  </div>
+</div>
+
+<div class="container section-container" data-ng-show="cart.length > 0">
+
+  <div class="box">
+    <h1 class="title">Revisar artículos del carrito</h1>
+    <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Producto</th>
+        <th class="text-center">Prec. Venta</th>
+        <th class="text-center" width="20%">Cantidad</th>
+        <th class="text-end">Importe Total</th>
+        <!--<th></th>-->
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-ng-repeat="row in cart">
+        <td>
+          <img data-ng-src="{{row.image}}" alt="{{row.name}}" width="50">
+        </td>
+        <td>
+          {{row.name}}
+        </td>
+        <td class="text-center">
+        	{{row.price | decimal}}
+        </td>
+        <td class="text-center">
+          <!--<input-quantity value="row.quantity" on-update="onChange.quantity()"></input-quantity>-->
+          {{row.quantity}}
+        </td>
+        <td class="text-end"><span class="price">{{row.importe|decimal}}</span></td>
+        <!--<td>
+          <button type="button" class="btn-close" aria-label="Close" data-ng-click="onClick.removeCart($index)">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </td>-->
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box">
+    <div class="row">
+      <div class="col-md-6"></div>
+    <div class="col-md-6">
+
+      <div class="row">
+        <div class="col-md-6 text-end">
+          <p>TOTAL</p>
+        </div>
+        <div class="col-md-6 text-end">
+          {{total.total|decimal}}
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+  <div class="box">
+    <div class="row">
+      <div class="col-md-4">
+      	<div class="d-grid">
+      		<a href="[[url]]" class="btn btn-outline-secondary"><img src="[[url]]statics/img/back.svg" width="25px"> Continuar comprando</a>
+      	</div>
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+      	<div class="d-grid">
+      		<a href="" class="btn btn-outline-primary" data-ng-click="onClick.checkout()"><img src="[[url]]statics/img/credit-card.svg" width="25px"> Finalizar compra</a>
+      	</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+	[% include 'footer.html' %]
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="[[url]]statics/js/currency.min.js"></script>
+    <script type="text/javascript" src="[[url]]statics/js/app.js"></script>
+  </body>
+</html>
