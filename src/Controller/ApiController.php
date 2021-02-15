@@ -113,7 +113,7 @@ class ApiController
 
         $merchant_order = null;
 
-        switch($body->topic){
+        switch($params['topic']){
             case 'payment':
                 $payment = MercadoPago\Payment::find_by_id($params['id']);
                 // Get the payment and the corresponding merchant_order reported by the IPN.
