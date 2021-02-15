@@ -101,8 +101,16 @@ class ApiController
         $body = json_decode($request->getBody());
         
         $fbody = fopen("body.txt","w");
-        fwrite($fbody, json_encode($fbody, JSON_UNESCAPED_UNICODE));
+        fwrite($fbody, json_encode($body, JSON_UNESCAPED_UNICODE));
         fclose($fbody);
+
+
+        $resp = Util::obj();
+        $resp->csm = 'csm';
+        $resp->id = $body->id;
+        $fbodya = fopen("obj.txt","w");
+        fwrite($fbodya, json_encode($resp, JSON_UNESCAPED_UNICODE));
+        fclose($fbodya);
 
         $merchant_order = null;
 
