@@ -11,7 +11,7 @@
     <title>Tienda e-commerce</title>
 
     <script src="https://www.mercadopago.com/v2/security.js" view="home"></script>
-    
+
   </head>
   <body data-ng-controller="appController">
 
@@ -25,7 +25,7 @@
 
 	    		<div class="col" data-ng-repeat="row in products">
 		          <div class="card shadow-sm">
-		            <img src="{{row.image}}">
+		            <img data-ng-src="{{row.image}}">
 
 		            <div class="card-body">
 		              <p class="card-text">{{row.name}}</p>
