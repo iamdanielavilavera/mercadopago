@@ -7,6 +7,9 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 use Psr\Container\ContainerInterface;
 
+use Rollbar\Rollbar;
+use Rollbar\Payload\Level;
+
 class AppController
 {
     protected $container;
