@@ -13,9 +13,11 @@ use MercadoPago;
 class ApiController
 {
     protected $container;
+    protected $logger;
 
     public function __construct(ContainerInterface $container) {
         $this->container = $container;
+        $this->logger = $container->get('logger');
     }
 
     public function preferences($request, $response, $args) {
@@ -24,9 +26,9 @@ class ApiController
 
         $body = json_decode($request->getBody());
 
-        $file = fopen("webhook.txt","w");
-        fwrite($file, json_encode($body, JSON_PRETTY_PRINT));
-        fclose($file);
+        $this->logger->info('PREFERENCES BODY');
+
+        $this->logger->info($body);
 
         $preference = new MercadoPago\Preference();
         $preference->payment_methods = Util::obj();
@@ -89,29 +91,30 @@ class ApiController
         $resp->init_point = $preference->init_point;
         $resp->id = $preference->id;
 
+        $this->logger->info('PREFERENCES RESULT');
 
-        $file = fopen("preference.txt","w");
-        fwrite($file, json_encode($resp, JSON_UNESCAPED_UNICODE));
-        fclose($file);
+        $this->logger->info(json_encode($resp, JSON_UNESCAPED_UNICODE));
 
         return Util::success($response, 'ok', $resp);
     }
 
     public function webhook($request, $response, $args){
         $body = json_decode($request->getBody());
-        
-        $fbody = fopen("body.txt","w");
-        fwrite($fbody, json_encode($body, JSON_UNESCAPED_UNICODE));
-        fclose($fbody);
+
+        $this->logger->info('WEBHOOK BODY JSON ENCODE');
+
+        $this->logger->info($body);
+
+        $this->logger->info('WEBHOOK BODY JSON UNESCAPE');
+
+        $this->logger->info(json_encode($body, JSON_UNESCAPED_UNICODE));
 
 
         $params = $request->getQueryParams();
 
-        $fp = fopen('params.txt', 'w');
-        fwrite($fp, print_r($params, true));
-        fclose($fp);
+        $this->logger->info('WEBHOOKS PARAMS', $params);
 
-        $merchant_order = null;
+        /*$merchant_order = null;
 
         switch($params['topic']){
             case 'payment':
@@ -126,7 +129,7 @@ class ApiController
 
         $file = fopen("webhook.txt","w");
         fwrite($file, json_encode($merchant_order, JSON_UNESCAPED_UNICODE));
-        fclose($file);
+        fclose($file);*/
 
         return Util::success($response, 'webhook ok!');
     }

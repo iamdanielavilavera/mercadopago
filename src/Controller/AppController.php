@@ -43,9 +43,8 @@ class AppController
     public function pending($request, $response, $args) {
         $params = $request->getQueryParams();
 
-        $fp = fopen('pending.txt', 'w');
-        fwrite($fp, print_r($params, true));
-        fclose($fp);
+        $this->logger->info('PENDING');
+        $this->logger->info(print_r($params, true));
 
         return $this->container->get('view')->render($response, 'pending.html', [
             'url' => $this->container->get('url')
@@ -55,9 +54,8 @@ class AppController
     public function failure($request, $response, $args) {
         $params = $request->getQueryParams();
 
-        $fp = fopen('failure.txt', 'w');
-        fwrite($fp, print_r($params, true));
-        fclose($fp);
+        $this->logger->info('FAILURE');
+        $this->logger->info(print_r($params, true));
         
         return $this->container->get('view')->render($response, 'failure.html', [
             'url' => $this->container->get('url')
