@@ -10,6 +10,9 @@ use Psr\Container\ContainerInterface;
 
 use MercadoPago;
 
+use Rollbar\Rollbar;
+use Rollbar\Payload\Level;
+
 class ApiController
 {
     protected $container;
@@ -29,6 +32,9 @@ class ApiController
         $this->logger->info('PREFERENCES BODY');
 
         $this->logger->info(json_encode($body));
+
+        Rollbar::log(Level::info(), 'preferences body');
+        Rollbar::log(Level::info(), json_encode($body)));
 
         $preference = new MercadoPago\Preference();
         $preference->payment_methods = Util::obj();
@@ -95,6 +101,9 @@ class ApiController
 
         $this->logger->info(json_encode($resp, JSON_UNESCAPED_UNICODE));
 
+        Rollbar::log(Level::info(), 'preferences result');
+        Rollbar::log(Level::info(), json_encode($resp)));
+
         return Util::success($response, 'ok', $resp);
     }
 
@@ -105,14 +114,22 @@ class ApiController
 
         $this->logger->info(json_encode($body));
 
+        Rollbar::log(Level::info(), 'WEBHOOK BODY');
+        Rollbar::log(Level::info(), json_encode($request->getBody())));
+
         $this->logger->info('WEBHOOK BODY JSON UNESCAPE');
 
         $this->logger->info(json_encode($body, JSON_UNESCAPED_UNICODE));
 
 
+
         $params = $request->getQueryParams();
 
         $this->logger->info('WEBHOOKS PARAMS', $params);
+
+
+        Rollbar::log(Level::info(), 'WEBHOOKS PARAMS');
+        Rollbar::log(Level::info(), json_encode($params)));
 
         /*$merchant_order = null;
 
