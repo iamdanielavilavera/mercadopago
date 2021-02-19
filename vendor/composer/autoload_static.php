@@ -29,6 +29,10 @@ class ComposerStaticInit630d2369f60420d4880e80d3120dc97c
             'Slim\\Psr7\\' => 10,
             'Slim\\' => 5,
         ),
+        'R' => 
+        array (
+            'Rollbar\\' => 8,
+        ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
@@ -97,6 +101,10 @@ class ComposerStaticInit630d2369f60420d4880e80d3120dc97c
         'Slim\\' => 
         array (
             0 => __DIR__ . '/..' . '/slim/slim/Slim',
+        ),
+        'Rollbar\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rollbar/rollbar/src',
         ),
         'Psr\\Log\\' => 
         array (

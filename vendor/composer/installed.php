@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'a6aee6fa25e27160c3cd90a92c7d79f9694175fb',
+    'reference' => 'b62645efc921292512d371345a16f8bebd6b9015',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'a6aee6fa25e27160c3cd90a92c7d79f9694175fb',
+      'reference' => 'b62645efc921292512d371345a16f8bebd6b9015',
     ),
     'doctrine/annotations' => 
     array (
@@ -263,6 +263,15 @@
       array (
       ),
       'reference' => '120b605dfeb996808c31b6477290a714d356e822',
+    ),
+    'rollbar/rollbar' => 
+    array (
+      'pretty_version' => 'v1.8.0',
+      'version' => '1.8.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '889501d445e6096c037f7098e2a7121657290de8',
     ),
     'slim/psr7' => 
     array (

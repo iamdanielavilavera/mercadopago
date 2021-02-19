@@ -34,6 +34,10 @@ class AppController
 
         $this->logger->info('SUCCESS', $params);
 
+        Rollbar::log(Level::info(), 'Paǵo con éxito');
+
+        Rollbar::log(Level::info(), print_r($params, true));
+
         return $this->container->get('view')->render($response, 'success.html', [
             'url' => $this->container->get('url'),
             'params' => $params

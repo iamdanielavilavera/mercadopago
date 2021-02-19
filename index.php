@@ -5,6 +5,8 @@ use DI\Container;
 use Slim\Factory\AppFactory;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Rollbar\Rollbar;
+use Rollbar\Payload\Level;
 
 require 'vendor'. DIRECTORY_SEPARATOR .'autoload.php';
 
@@ -12,6 +14,14 @@ define('APP_ROOT', __DIR__);
 
 MercadoPago\SDK::setAccessToken('APP_USR-8208253118659647-112521-dd670f3fd6aa9147df51117701a2082e-677408439');
 MercadoPago\SDK::setIntegratorId('dev_2e4ad5dd362f11eb809d0242ac130004');
+
+
+Rollbar::init(
+    array(
+        'access_token' => '8fe47e1777324de9b06eedef06b636ac',
+        'environment' => 'production'
+    )
+);
 
 $container = new Container();
 
