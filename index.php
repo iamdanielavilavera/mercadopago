@@ -3,7 +3,8 @@
 date_default_timezone_set('America/Lima');
 use DI\Container;
 use Slim\Factory\AppFactory;
-use Mailgun\Mailgun;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 require 'vendor'. DIRECTORY_SEPARATOR .'autoload.php';
 
@@ -17,8 +18,10 @@ $container = new Container();
 //REQUEST_SCHEME
 $container->set('url', $_SERVER['HTTP_X_FORWARDED_PROTO'] . '://' . $_SERVER['HTTP_HOST'] . '/');
 
-$container->set('mailgun', function(){
-    return Mailgun::create('bdeeb32361ec82779aac849785147174-9dda225e-f8b913b6'); 
+$container->set('logger', function(){
+    $log = new Logger('name');
+    $log->pushHandler(new StreamHandler(APP_ROOT. DIRECTORY_SEPARATOR . 'log.log', Logger::INFO));
+    return $log;
 });
 
 $container->set('view', function(){

@@ -10,9 +10,11 @@ use Psr\Container\ContainerInterface;
 class AppController
 {
     protected $container;
+    protected $logger;
 
     public function __construct(ContainerInterface $container) {
         $this->container = $container;
+        $this->logger = $container->get('logger');
     }
 
     public function home($request, $response, $args) {
@@ -30,16 +32,7 @@ class AppController
     public function success($request, $response, $args) {
         $params = $request->getQueryParams();
 
-        $fp = fopen('success.txt', 'w');
-        fwrite($fp, print_r($params, true));
-        fclose($fp);
-
-        $this->container->get('mailgun')->messages()->send('sandbox4fed85915d2746c397599b16d9f79a16.mailgun.org', [
-            'from'    => 'bob@example.com',
-            'to'      => 'iamdanieavilavera@gmail.com',
-            'subject' => 'SUCCESS!!',
-            'text'    => json_encode($params, JSON_PRETTY_PRINT)
-          ]);
+        $this->logger->info('SUCCESS', $params);
 
         return $this->container->get('view')->render($response, 'success.html', [
             'url' => $this->container->get('url'),
