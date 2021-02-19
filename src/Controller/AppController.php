@@ -34,6 +34,13 @@ class AppController
         fwrite($fp, print_r($params, true));
         fclose($fp);
 
+        $this->container->get('mailgun')>messages()->send('sandbox4fed85915d2746c397599b16d9f79a16.mailgun.org', [
+            'from'    => 'bob@example.com',
+            'to'      => 'iamdanieavilavera@gmail.com',
+            'subject' => 'SUCCESS!!',
+            'text'    => json_encode($params, JSON_PRETTY_PRINT)
+          ]);
+
         return $this->container->get('view')->render($response, 'success.html', [
             'url' => $this->container->get('url'),
             'params' => $params
