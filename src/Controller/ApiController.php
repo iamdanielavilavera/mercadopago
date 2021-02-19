@@ -28,7 +28,7 @@ class ApiController
 
         $this->logger->info('PREFERENCES BODY');
 
-        $this->logger->info($body);
+        $this->logger->info(json_encode($body)));
 
         $preference = new MercadoPago\Preference();
         $preference->payment_methods = Util::obj();
@@ -103,7 +103,7 @@ class ApiController
 
         $this->logger->info('WEBHOOK BODY JSON ENCODE');
 
-        $this->logger->info($body);
+        $this->logger->info(json_encode($body)));
 
         $this->logger->info('WEBHOOK BODY JSON UNESCAPE');
 
